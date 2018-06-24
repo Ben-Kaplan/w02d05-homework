@@ -150,6 +150,16 @@ for(let i = 0; i < baddies.length; i++) {
 // Chapter 5
 // ============
 const makeBuddies = () => {
+  const $aside = $("<aside>Middle Earth</aside>");
+  $("#middle-earth").append($aside);
+  const $friends = $("<ul/>");
+  for (let i = 0; i < buddies.length; i++) {
+    const $friend = $("<li/>");
+    $friend.attr("class", "buddy");
+    $friend.text(buddies[i]);
+    $friends.append($friend);
+    $aside.append($friends);
+  } 
 
   // 1. create an aside tag and append it to middle-earth below mordor
 
@@ -167,6 +177,7 @@ const makeBuddies = () => {
 // ============
 const leaveTheShire = () => {
 
+$(".hobbit").insertAfter("#Rivendell");
   // 1. grab the hobbits (the ul in which they reside) and move them to Rivendell
 
   // hint: the hobbits ul is a childNode of The-Shire-- there is way to get a list of childNodes
@@ -180,8 +191,9 @@ const leaveTheShire = () => {
 // Chapter 7
 // ============
 const beautifulStranger = () => {
-
-  // 1. change the buddy 'Strider' textnode to "Aragorn"
+const $strider = $("aside li:last-child").prev();
+$strider.text("Aragorn");
+// $(".buddy").get(3).text("Aragorn");  // 1. change the buddy 'Strider' textnode to "Aragorn"
 
   // hint: You can get a list of elements by tag name, such as 'aside'
 
@@ -194,7 +206,12 @@ const beautifulStranger = () => {
 // Chapter 8
 // ============
 const forgeTheFellowShip = () => {
-
+const $fellowshipDiv = $ ("<div/>");
+$fellowshipDiv.attr("id", "the-fellowship");
+$fellowshipDiv.text("The Fellowship");
+$("#middle-earth").append($fellowshipDiv);
+$fellowshipDiv.append($(".buddy"));
+$fellowshipDiv.append($(".hobbit"));
   // 1. create a new div with an id 'the-fellowship'
 
   // 2. add an h1 with the text 'The Fellowship' to this new div
@@ -212,7 +229,9 @@ const forgeTheFellowShip = () => {
 // Chapter 9
 // ============
 const theBalrog = () => {
-
+const $gandalf = $("aside ul:first-child");
+$gandalf.text("Gandalf the White");
+$gandalf.attr("class","the-white");
   // 1. change the 'Gandalf' textNode to 'Gandalf the White'
 
   // 2. add a class "the-white" to this element
@@ -228,7 +247,9 @@ const theBalrog = () => {
 // Chapter 10
 // ============
 const hornOfGondor = () => {
-
+  alert("The Horn of Gondor has been Blown");
+  const $boromir = $("#the-fellowship ul:first-child li last-child");
+  $boromir.css("text-decoration","line-through");
   // 1. create a pop-up alert that the horn of gondor has been blown
 
   // 2. Boromir's been killed by the Uruk-hai! Put a linethrough on Boromir's name
@@ -258,6 +279,11 @@ const itsDangerousToGoAlone = () => {
 // Chapter 12
 // ============
 const weWantsIt = () => {
+  const $gollum = $("<ul id='gollum'>Gollum</ul>");
+  $("#Mordor").append($gollum);
+  $("#the-ring").insertAfter($gollum);
+  $gollum.insertAfter($("#mount-doom"));
+
 
   // 1. Create a div with an id of 'gollum' and add it to Mordor
 
@@ -274,7 +300,9 @@ const weWantsIt = () => {
 // Chapter 13
 // ============
 const thereAndBackAgain = () => {
-
+ $("#gollum").remove();
+ $("#baddies").remove();
+ $("#hobbit").insertAfter("#The-Shire");
   // 1. remove Gollum and the Ring from the DOM
 
   // 2. remove all the baddies from the DOM
