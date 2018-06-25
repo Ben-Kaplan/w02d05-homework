@@ -150,7 +150,7 @@ for(let i = 0; i < baddies.length; i++) {
 // Chapter 5
 // ============
 const makeBuddies = () => {
-  const $aside = $("<aside>Middle Earth</aside>");
+  const $aside = $("<aside></aside>");
   $("#middle-earth").append($aside);
   const $friends = $("<ul/>");
   for (let i = 0; i < buddies.length; i++) {
@@ -229,7 +229,7 @@ $fellowshipDiv.append($(".hobbit"));
 // Chapter 9
 // ============
 const theBalrog = () => {
-const $gandalf = $("aside ul:first-child");
+const $gandalf = $("li:contains('Gandalf')");
 $gandalf.text("Gandalf the White");
 $gandalf.attr("class","the-white");
   // 1. change the 'Gandalf' textNode to 'Gandalf the White'
@@ -248,7 +248,7 @@ $gandalf.attr("class","the-white");
 // ============
 const hornOfGondor = () => {
   alert("The Horn of Gondor has been Blown");
-  const $boromir = $("#the-fellowship ul:first-child li last-child");
+  const $boromir = $("li:contains('Boromir')");
   $boromir.css("text-decoration","line-through");
   // 1. create a pop-up alert that the horn of gondor has been blown
 
@@ -265,7 +265,12 @@ const hornOfGondor = () => {
 // Chapter 11
 // ============
 const itsDangerousToGoAlone = () => {
-
+  const $mountDoom = $("<div id='mount-doom'></div>");
+  $("#Mordor").append($mountDoom);
+const $frodo = $("li:contains('Frodo')");
+const $sam = $("li:contains('Samwise')");
+$("#Mordor").append($frodo);
+$("#Mordor").append($sam);
   // 1. take Frodo and Sam out of the fellowship and move them to Mordor (they don't need to be inside a ul in Mordor)
 
   // 2. add a div with an id of 'mount-doom' to Mordor
@@ -281,8 +286,9 @@ const itsDangerousToGoAlone = () => {
 const weWantsIt = () => {
   const $gollum = $("<ul id='gollum'>Gollum</ul>");
   $("#Mordor").append($gollum);
-  $("#the-ring").insertAfter($gollum);
-  $gollum.insertAfter($("#mount-doom"));
+  $($gollum).append("#the-ring");
+  $("#mount-doom").append($gollum);
+
 
 
   // 1. Create a div with an id of 'gollum' and add it to Mordor
@@ -301,8 +307,8 @@ const weWantsIt = () => {
 // ============
 const thereAndBackAgain = () => {
  $("#gollum").remove();
- $("#baddies").remove();
- $("#hobbit").insertAfter("#The-Shire");
+ $(".baddies").remove();
+ $(".hobbit").appendTo("#The-Shire");
   // 1. remove Gollum and the Ring from the DOM
 
   // 2. remove all the baddies from the DOM
